@@ -14,14 +14,35 @@
   display: none;
 }
 #library{
-   margin-left: 8%;
-    margin-top: 32%;
+   margin-left: 72%;
+    margin-top: 15%;
     position: absolute;
     display: none;
 }
 #website{
    margin-left: 8%;
-    margin-top: 32%;
+    margin-top: 40%;
+    position: absolute;
+    display: none;
+}#back{
+   margin-left: 85%;
+    margin-top: 50%;
+    position: absolute;
+    display: none;
+}#threeD{
+   margin-left: 45.3%;
+    margin-top: 51%;
+    position: absolute;
+    display: none;
+}#courselist{
+   margin-left: 16.2%;
+   margin-top: 10%;
+   position: absolute;
+   display: none;
+}
+#streetview{
+   margin-left: 43.5%;
+    margin-top: 10%;
     position: absolute;
     display: none;
 }
@@ -42,6 +63,17 @@
        </div>
        <div id="library" class="library alert alert-light" role="alert">
          Press L to visit Library
+       </div>       <div id="back" class="back alert alert-light" role="alert">
+         Press A to admin office
+       </div> 
+       <div id="threeD" class="threeD alert alert-light" role="alert">
+         Press D to 3D view
+       </div> 
+       <div id="courselist" class="courselist alert alert-light" role="alert">
+         Press C to Course List
+       </div> 
+       <div id="streetview" class="streetview alert alert-light" role="alert">
+         Press S to Street View
        </div>
 </body>
 
@@ -58,14 +90,19 @@
    var margin_top = 33;
    var margin_left = 77;
    var one_step = 1;
+   
    document.getElementById("left").style.marginLeft = margin_left + "%";
    document.getElementById("left").style.marginTop = margin_top + "%";
    document.onkeydown = function (event) {
 
       document.getElementById("website").style.display = "none"
       document.getElementById("library").style.display = "none"
+      document.getElementById("back").style.display = "none"
+      document.getElementById("threeD").style.display = "none"
+      document.getElementById("courselist").style.display = "none"
+      document.getElementById("streetview").style.display = "none"
 
-      if ((margin_top <= 22 && margin_left < 84 && margin_left > 64)) {
+      if ((margin_top <= 23 && margin_left < 87 && margin_left > 61)) {
                showhide("library")
             }
       if ((margin_top > 32 && margin_left <= 21)) {
@@ -76,14 +113,53 @@
          console.log("Visit our Website");
          showhide("website");
       }
+      if ((margin_top >= 39 && margin_left >= 86)) {
+         console.log("Back to home");
+         showhide("back");
+      }
+      if ((margin_top >= 45 && margin_left < 55 && margin_left > 45)) {
+         console.log("View in 3D");
+         showhide("threeD");
+      }
+      if ((margin_top <= 21 && margin_left < 27 && margin_left > 12)) {
+         console.log("Course List");
+         showhide("courselist");
+      }
+      if ((margin_top <= 21 && margin_left < 55 && margin_left > 36)) {
+         console.log("Street View");
+         showhide("streetview");
+      }
+      
 
       switch (event.keyCode) {
          case 87:
             console.log("(" + margin_top + "," + margin_left + ")");
-            window.open("https://www.google.com", '_blank');
+            window.open("https://home.iitd.ac.in/", '_blank');
+            break;
+            case 76:
+            console.log("(" + margin_top + "," + margin_left + ")");
+            window.open("https://library.iitd.ac.in/", '_blank');
+            break;
+         case 65:
+            console.log("(" + margin_top + "," + margin_left + ")");
+            window.close();
+            break;
+            case 68:
+               console.log("(" + margin_top + "," + margin_left + ")");
+               window.open("https://earth.google.com/web/search/Indian+Institute+of+Technology+Delhi,+IIT+Delhi+Main+Road,+IIT+Campus,+Hauz+Khas,+New+Delhi,+Delhi/@28.545718,77.1927679,226.21200941a,914.57919614d,35y,0h,45t,0r/data=Cs8BGqQBEp0BCiUweDM5MGQxZGY2YjkwNTVmYjU6MHg4MWMxMGIyNjZiMWVhM2MwGanWwiy0izxAIf2NLE9WTFNAKmJJbmRpYW4gSW5zdGl0dXRlIG9mIFRlY2hub2xvZ3kgRGVsaGksIElJVCBEZWxoaSBNYWluIFJvYWQsIElJVCBDYW1wdXMsIEhhdXogS2hhcywgTmV3IERlbGhpLCBEZWxoaRgCIAEiJgokCUlFdQiQmTZAEUhFdQiQmTbAGa1UnN00wkBAIeia7fyP4lHAKAI", '_blank');
+            break;
+            case 67:
+               console.log("(" + margin_top + "," + margin_left + ")");
+               window.open("https://home.iitd.ac.in/departments.php", '_blank');
+               break;
+            case 83:
+               console.log("(" + margin_top + "," + margin_left + ")");
+               window.open("https://www.google.com/maps/@28.545409,77.1929044,3a,75y,270.37h,90t/data=!3m7!1e1!3m5!1sPhQVDsPsI3WnljIzP9uRrg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DPhQVDsPsI3WnljIzP9uRrg%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D270.4266%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656", '_blank');
+            break;
+
          case 37:
-            document.getElementById("down").style.display = "none";
-            if (margin_left > 2 && (margin_top < 32 || margin_left != 21)&& (margin_top >= 21 || margin_left != 84)) {
+            // if (margin_left > 2 && (margin_top < 32 || margin_left != 21)&& (margin_top >= 21 || margin_left != 84)) {
+               document.getElementById("down").style.display = "none";
                document.getElementById("up").style.display = "none";
                document.getElementById("left").style.display = "block";
                document.getElementById("right").style.display = "none";
@@ -91,7 +167,7 @@
                document.getElementById("left").style.marginLeft = margin_left + "%";
                document.getElementById("left").style.marginTop = margin_top + "%";
                console.log("(" + margin_top + "," + margin_left + ")");
-            }
+            // }
             
             break;
          case 38:
