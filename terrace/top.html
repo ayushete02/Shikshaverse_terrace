@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <title>Document</title>
+</head>
+
+<style>
+   .body::-webkit-scrollbar {
+  display: none;
+}
+#library{
+   margin-left: 8%;
+    margin-top: 32%;
+    position: absolute;
+    display: none;
+}
+#website{
+   margin-left: 8%;
+    margin-top: 32%;
+    position: absolute;
+    display: none;
+}
+</style>
+
+<body class="body" style="padding:0px; margin: 0%; justify-content: center; background-color: skyblue;">
+   <img style="margin:auto; position: absolute;width:-webkit-fill-available" src="./top.png" alt="">
+   <img id="down" style="position: absolute; margin-top: 20%;  margin-left: 10%; display: none;" width="80px"
+      height="100px" src="./down.png" alt="">
+   <img id="up" style="position: absolute; margin-top: 10%;  margin-left: 10%; display: none;" width="80px"
+      height="100px" src="./up.png" alt="">
+   <img id="left" style="position: absolute; margin-top: 10%;  margin-left: 10%; display: block;" width="80px"
+      height="100px" src="./left.png" alt="">
+   <img id="right" style="position: absolute; margin-top: 10%;  margin-left: 10%; display: none;" width="80px"
+      height="100px" src="./right.png" alt="">
+      <div id="website" class="website alert alert-light" role="alert">
+         Press W to visit Website
+       </div>
+       <div id="library" class="library alert alert-light" role="alert">
+         Press L to visit Library
+       </div>
+</body>
+
+</html>
+<script>
+   function showhide(object) {
+             document.getElementById(object).style.display = "block";
+   }
+   function move(whole_string) {
+      split_string = whole_string.split(/(\d+)/)
+      return parseInt(split_string[1])
+   }
+
+   var margin_top = 33;
+   var margin_left = 77;
+   var one_step = 1;
+   document.getElementById("left").style.marginLeft = margin_left + "%";
+   document.getElementById("left").style.marginTop = margin_top + "%";
+   document.onkeydown = function (event) {
+
+      document.getElementById("website").style.display = "none"
+      document.getElementById("library").style.display = "none"
+
+      if ((margin_top <= 22 && margin_left < 84 && margin_left > 64)) {
+               showhide("library")
+            }
+      if ((margin_top > 32 && margin_left <= 21)) {
+         console.log("Visit our Website")
+         showhide("website");
+      }
+      if ((margin_top >= 31 && margin_left < 21)) {
+         console.log("Visit our Website");
+         showhide("website");
+      }
+
+      switch (event.keyCode) {
+         case 87:
+            console.log("(" + margin_top + "," + margin_left + ")");
+            window.open("https://www.google.com", '_blank');
+         case 37:
+            document.getElementById("down").style.display = "none";
+            if (margin_left > 2 && (margin_top < 32 || margin_left != 21)&& (margin_top >= 21 || margin_left != 84)) {
+               document.getElementById("up").style.display = "none";
+               document.getElementById("left").style.display = "block";
+               document.getElementById("right").style.display = "none";
+               margin_left = margin_left - one_step;
+               document.getElementById("left").style.marginLeft = margin_left + "%";
+               document.getElementById("left").style.marginTop = margin_top + "%";
+               console.log("(" + margin_top + "," + margin_left + ")");
+            }
+            
+            break;
+         case 38:
+            if (margin_top > 19 && (margin_top != 45 || margin_left < 83)&& (margin_top != 21 || margin_left >= 84|| margin_left <= 64)) {
+               document.getElementById("down").style.display = "none";
+               document.getElementById("up").style.display = "block";
+               document.getElementById("left").style.display = "none";
+               document.getElementById("right").style.display = "none";
+               console.log("(" + margin_top + "," + margin_left + ")");
+               margin_top = margin_top - one_step;
+               document.getElementById("up").style.marginLeft = margin_left + "%";
+               document.getElementById("up").style.marginTop = margin_top + "%";
+            }
+            
+            break;
+
+         case 39:
+            if (margin_left < 93 && (margin_top <= 39 || margin_left < 90)&& (margin_top >= 17  || margin_left < 49)&& (margin_top >=21 || margin_top < 19 || margin_left < 63)) {
+               document.getElementById("down").style.display = "none";
+               document.getElementById("up").style.display = "none";
+               document.getElementById("left").style.display = "none";
+               document.getElementById("right").style.display = "block";
+               console.log("(" + margin_top + "," + margin_left + ")");
+
+               // marleft = document.getElementById("right").style.marginLeft;
+               margin_left = margin_left + one_step;
+               document.getElementById("right").style.marginLeft = margin_left + "%";
+               document.getElementById("right").style.marginTop = margin_top + "%";
+            }
+            break;
+         case 40:
+            if (margin_top < 54   && (margin_top != 39 || margin_left < 84) && (margin_top != 31 || margin_left > 21)) {
+               document.getElementById("down").style.display = "block";
+               document.getElementById("up").style.display = "none";
+               document.getElementById("left").style.display = "none";
+               document.getElementById("right").style.display = "none";
+
+               console.log("(" + margin_top + "," + margin_left + ")");
+
+               // martop = document.getElementById("down").style.marginTop;
+               margin_top = margin_top + one_step;
+               document.getElementById("down").style.marginLeft = margin_left + "%";
+               document.getElementById("down").style.marginTop = margin_top + "%";
+            }
+            
+            break;
+      }
+   };
+
+</script>
